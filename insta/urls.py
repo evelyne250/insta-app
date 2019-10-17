@@ -7,3 +7,5 @@ urlpatterns=[
     url('^$',views.welcome,name = 'welcome'),
     # url('^$',views.pictures,name='pictures'),
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

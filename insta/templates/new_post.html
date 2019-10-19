@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{% static 'css/insta.css' %}"> {% endblock %}
 
 </head>
-
+<div class="container">
 <body>
 
   <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
@@ -28,5 +28,5 @@
   {% bootstrap_javascript %} {% endblock %}
 
 </body>
-
+</div>
 </html>

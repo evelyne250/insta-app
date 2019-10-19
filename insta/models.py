@@ -5,22 +5,40 @@ from tinymce.models import HTMLField
 class NewsLetterRecipients(models.Model):
     name = models.CharField(max_length = 30)
     email = models.EmailField()
-
-class Image(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='pics/')
-    image_name = models.CharField(max_length=30)
-    caption = models.TextField()
-    pub_date = models.DateTimeField(auto_now_add=True)
-    # location= models.ForeignKey(Location)
-    # category = models.ForeignKey(Category, db_column='names')
-    def __str__(self):
-        return self.description
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='images/')
     bio = models.TextField(max_length=500)
+    
 
     def __str__(self):
         return self.bio
+
+class Image(models.Model):
+    image = models.ImageField(upload_to='pics/')
+    image_name = models.CharField(max_length=30)
+    caption = models.TextField()
+    likes = models.ManyToManyField(User)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.description
+
+
+
+class Comment(models.Model):
+    comment = models.TextField()
+    post = models.ForeignKey(Image, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.name} Image'
+
+
+class Follow(models.Model):
+    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
+    def __str__(self):
+        return f'{self.follower} Follow'
+

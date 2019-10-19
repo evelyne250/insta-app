@@ -22,7 +22,7 @@
    
     {% for item in images %}
   <div class="row">
-      <p>Posted {{item.pub_date|timesince}} by {{item.user}}</p>
+      <p>{{item.pub_date|timesince}} by {{item.user}}</p>
     </div>
   <div class="row">
     <!-- displaying News articles -->

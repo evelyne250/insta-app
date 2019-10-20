@@ -9,14 +9,15 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='images/')
     bio = models.TextField(max_length=500)
+    name = models.CharField(blank=True, max_length=120)
     
 
     def __str__(self):
-        return self.bio
+        return self.name
 
     @classmethod
     def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=username).all()
+        return cls.objects.filter(user__username__icontains=name).all()
 
     def save_profile(self):
         self.user

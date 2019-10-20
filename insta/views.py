@@ -46,24 +46,25 @@ def profile(request):
 	'''
 	user=User.objects.all()
 	images = Image.objects.all()
-	title = User.objects.all()
 	profile = Profile.objects.all()
 	
-	return render(request,"profile.html",{"images":images,"profile":profile,"title":title})
+	return render(request,"profile.html",{"images":images,"profile":profile,"user":user})
 
 
 @login_required(login_url='/accounts/login/')
 def search_profile(request):
-    if 'search_user' in request.GET and request.GET['search_user']:
-        name = request.GET.get("search_user")
-        results = Profile.search_profile(name)
+
+    if 'profile' in request.GET and request.GET["profile"]:
+        name = request.GET.get("profile")
+
+        results = Profile.search_by_category(search_term)
         print(results)
-        message = f'name'
-        params = {
-            'results': results,
-            'message': message
-        }
-        return render(request, 'search.html', params)
+        message = f"{name}"
+        
+        
+
+        return render(request, 'search.html',{"message":message,'results': results})
+
     else:
-        message = "You haven't searched for any image category"
-    return render(request, 'search.html', {'message': message})
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})

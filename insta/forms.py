@@ -8,7 +8,7 @@ class NewsLetterForm(forms.Form):
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['user', 'pub_date']
+        exclude = ['user', 'pub_date','profile','likes']
 
 class ProfileForm(forms.ModelForm):
     class Meta:

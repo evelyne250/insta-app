@@ -1,3 +1,13 @@
 body{
     color: blueviolet;
 }
+#new {
+    display: inline-block;
+    background-image: url(/static/img/insta7.png);
+    padding: 0px;
+}
+.instaicon {
+    display: inline-block;
+    background-image: url(/static/img/insta8.png);
+    padding: 0px;
+}

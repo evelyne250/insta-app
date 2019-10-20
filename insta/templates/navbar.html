@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'welcome' %}">Instagram</a>
-    </div>
-  </div>
-</nav>
+<div>
+  <img src="{% static 'img/logo.png' %}" alt="" class="download" style="margin-left:100px;margin-top: 20px;">
+  <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search' %}" >
+    <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
+   <i class="spinner "></i>
+</form>
+</div>
 <div class="col-sm-6 col-md-6">
 
   <ul>
@@ -42,10 +43,7 @@
       </ul>
     </li>
   </ul>
-  <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search' %}" >
-    <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
-   <i class="spinner "></i>
-</form>
+
   <li>
     <a class='btn btn-default' href="/accounts/login">Login</a>
   </li>

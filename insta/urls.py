@@ -10,6 +10,8 @@ urlpatterns=[
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^new/post$', views.new_post, name='new-post'),
     url(r'^profile', views.profile, name='profile'),
+    url(r'^search/', views.search_profile, name='search'),
+    # url(r'^user_profile/', views.user_profile, name='user_profile'),
 
 ]
 if settings.DEBUG:

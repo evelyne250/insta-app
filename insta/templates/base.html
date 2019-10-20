@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-
+  <div class="container">
   {% if title %}
   <title>Instagram - {{title}}</title>
   {% else %}
@@ -21,18 +21,12 @@
     {% block content %}
    
     {% for item in images %}
-  <div class="row">
-      <p>{{item.pub_date|timesince}} by {{item.profile}}</p>
-    </div>
-  <div class="row">
-    <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center"> {{ item.image_name }} </h2>
-    </div>
 
-    <!--Display news Article images  -->
+    <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <img src="{{item.image.url}}" class="img-responsive" alt="Image">
+      <h2 class="text-center"> {{ item.image_name }} </h2>
+      <p>{{item.pub_date|timesince}} by {{item.profile}}</p>
     </div>
 
   </div>
@@ -42,5 +36,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      {% bootstrap_javascript %}
     {% endblock %}
+  </div>
 </body>
 </html>

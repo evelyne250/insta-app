@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 import datetime as dt
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404,HttpResponseRedirect
-from .models import Image,NewsLetterRecipients,Profile
-from .forms import ImageForm,NewsLetterForm
+from .models import Image,NewsLetterRecipients,Profile,Comment
+from .forms import ImageForm,NewsLetterForm,CommentForm
 from django.contrib.auth import login, authenticate
 
 @login_required(login_url='/accounts/login/')
@@ -68,3 +68,17 @@ def search_profile(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+@login_required(login_url='/accounts/login/')
+def comment_on(request, post_id):
+    commentform = CommentForm()
+    post = get_object_or_404(Image, post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user.profile
+            comment.photo = post
+            comment.save()
+            print('gggggg')
+            return redirect('welcome')

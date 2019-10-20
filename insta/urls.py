@@ -11,6 +11,7 @@ urlpatterns=[
     url(r'^new/post$', views.new_post, name='new-post'),
     url(r'^profile', views.profile, name='profile'),
     url(r'^search/', views.search_profile, name='search'),
+    url(r'^comment/(\d+)', views.comment_on, name='comment'),
     # url(r'^user_profile/', views.user_profile, name='user_profile'),
 
 ]

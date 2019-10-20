@@ -18,6 +18,12 @@ class Profile(models.Model):
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=username).all()
 
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
+
 class Image(models.Model):
     image = models.ImageField(upload_to='pics/')
     image_name = models.CharField(max_length=30)
@@ -27,6 +33,13 @@ class Image(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.description
+
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
 
 
 

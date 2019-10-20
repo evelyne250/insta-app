@@ -4,7 +4,7 @@ import datetime as dt
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .models import Image,NewsLetterRecipients,Profile
-from .forms import ImageForm,NewsLetterForm,UpdateUserForm,UpdateUserProfileForm
+from .forms import ImageForm,NewsLetterForm
 from django.contrib.auth import login, authenticate
 
 @login_required(login_url='/accounts/login/')
@@ -41,25 +41,15 @@ def new_post(request):
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    prof = Profile.objects.all()
-    if request.method == 'POST':
-        user_form = UpdateUserForm(request.POST)
-        prof_form = UpdateUserProfileForm(request.POST, request.FILES)
-        if user_form.is_valid() and prof_form.is_valid():
-            user_form.save()
-            prof_form.save()
-            return HttpResponseRedirect(request.path_info)
-    else:
-        user_form = UpdateUserForm()
-        prof_form = UpdateUserProfileForm()
-    params = {
-        'user_form': user_form,
-        'prof_form': prof_form,
-        'prof': prof,
-
-    }
-    return render(request, 'profile.html', params)
-
+	'''
+	Method that fetches a users profile page
+	'''
+	user=User.objects.all()
+	images = Image.objects.all()
+	title = User.objects.all()
+	profile = Profile.objects.all()
+	
+	return render(request,"profile.html",{"images":images,"profile":profile,"title":title})
 
 
 @login_required(login_url='/accounts/login/')

@@ -10,18 +10,11 @@ class ImageForm(forms.ModelForm):
         model = Image
         exclude = ['user', 'pub_date']
 
-class UpdateUserForm(forms.ModelForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
+class ProfileForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ('username', 'email')
-
-
-class UpdateUserProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['user', 'profile_picture', 'bio']
+        model=Profile
+        fields=['bio','profile_picture'] 
+        exclude=['user']  
        
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

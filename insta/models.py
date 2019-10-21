@@ -6,19 +6,18 @@ class NewsLetterRecipients(models.Model):
     name = models.CharField(max_length = 30)
     email = models.EmailField()
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     profile_picture = models.ImageField(upload_to='images/')
     bio = models.TextField(max_length=500)
-    name = models.CharField(blank=True, max_length=120)
+    name = models.CharField(max_length=120)
     
 
     def __str__(self):
         return self.name
 
     @classmethod
-    def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()
-
+    def search_profile(cls, username):
+        return cls.objects.filter(name__icontains=username)
     def save_profile(self):
         self.user
 
@@ -28,12 +27,13 @@ class Profile(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='pics/')
     image_name = models.CharField(max_length=30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="image")
     caption = models.TextField()
-    likes = models.ManyToManyField(User)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    likes = models.IntegerField(default=0)
+    # profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.description
+        return self.image_name
 
 
     def save_image(self):
@@ -42,16 +42,19 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
-
+  
+    @classmethod
+    def get_all_images(cls):
+        images=cls.objects.all().prefetch_related('comment_set')
+        return images
 
 class Comment(models.Model):
-    comment = models.TextField()
-    post = models.ForeignKey(Image, on_delete=models.CASCADE)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField(auto_now_add=True)
-
+    posted_by=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    comment_image=models.ForeignKey(Image,on_delete=models.CASCADE,null=True)
+    comment=models.CharField(max_length=20,null=True)
     def __str__(self):
-        return f'{self.user.name} Image'
+        return self.posted_by
+
 
 
 class Follow(models.Model):

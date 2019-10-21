@@ -14,7 +14,7 @@
 </div>
 <div class='col-md-4'>
   <form class="col-md-7" id="searchform" action="{% url 'search' %}"  style="margin-left:100px;margin-top: 20px;">
-    <input name="search_user" id="searching" class="form-control text-center"  placeholder="Search">
+    <input name="search_user" id="searching" class="form-control text-center"  placeholder="Search" name="username">
    
 </form>
 
@@ -22,7 +22,8 @@
 <div class='col-md-5' style="padding: 2px;">
     <img src="{% static 'img/insta10.png' %}" style="margin-left:20px; margin-top: 10px;width: 40px; padding: 0px; background-color: white; display: inline-block;">
   <img src="{% static 'img/insta9.png' %}" style="margin-left:20px;margin-top: 10px;width: 45px;">
-  <img src="{% static 'img/insta12.png' %}" style="margin-left:20px;margin-top: 10px;width: 35px;">
+  <img src="{% static 'img/insta12.png' %}" style="margin-left:20px;margin-top: 10px;width: 35px;" >
+  
 </div>
 </div>
 
@@ -30,41 +31,6 @@
 <br>
 <br>
 <br>
-<div class="col-sm-6 col-md-6">
 
-  <ul>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
-                <span class="caret"></span>
-            </a>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="{%url 'welcome'%}">Home</a>
-        </li>
-        <li>
-          <a href="{%url 'new-post'%}">Post something</a>
-        </li>
-        <li>
-          <a href="{%url 'profile'%}">Profile</a>
-        </li>
-        <li>
-          <a href="user_profile/username/"> user</a>
-        </li>
-        <li>
-          <a href="/accounts/password/change">Change Password</a>
-        </li>
-        <li>
-          <a href="/logout">Logout</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-  <li>
-    <a class='btn btn-default' href="/accounts/login">Login</a>
-  </li>
-
-
-</div>
 </body>
 </html>

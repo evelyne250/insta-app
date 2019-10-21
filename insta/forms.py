@@ -17,7 +17,6 @@ class ProfileForm(forms.ModelForm):
         exclude=['user']  
        
 class CommentForm(forms.ModelForm):
-
     class Meta:
-        model = Comment
-        fields = ('comment',)
+        model=Comment
+        exclude=['comment_image','posted_by','profile']

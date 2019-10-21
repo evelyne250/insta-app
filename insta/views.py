@@ -101,3 +101,19 @@ def add_comment(request,image_id):
         form=CommentForm()
     return render(request,'comment.html',{"form":form,"image_id":image_id})
 
+
+@login_required(login_url='/accounts/login/')
+def likepost(request,image_id):
+    likes =1
+
+    images=Image.objects.get(id=image_id)
+
+    images.likes=images.likes+1
+    images.save()
+    return redirect('welcome')
+#            images.likes.remove(request.user)
+#            is_liked=False
+#    else:
+#        images.likes.add(request.user)
+#        is_liked=True
+#    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

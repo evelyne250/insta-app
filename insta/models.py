@@ -45,6 +45,9 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
+    def total_likes(self):
+        self.likes.count()
+
   
     @classmethod
     def get_all_images(cls):

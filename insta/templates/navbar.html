@@ -13,16 +13,18 @@
 <i href="{%url 'welcome'%}"></i>
 </div>
 <div class='col-md-4'>
-  <form class="col-md-7" id="searchform" action="{% url 'search' %}"  style="margin-left:100px;margin-top: 20px;">
-    <input name="search_user" id="searching" class="form-control text-center"  placeholder="Search" name="username">
-   
+  <form class="col-md-7" role="search" action="{% url 'search_results' %}" style="margin-left:100px;margin-top: 20px;">
+    <input name="user" class="form-control text-center"  placeholder="Search" name="user">
+
 </form>
 
 </div>
+
+
 <div class='col-md-5' style="padding: 2px;">
-    <img src="{% static 'img/insta10.png' %}" style="margin-left:20px; margin-top: 10px;width: 40px; padding: 0px; background-color: white; display: inline-block;">
+    <img href="{%url 'welcome'%}" src="{% static 'img/insta10.png' %}" style="margin-left:20px; margin-top: 10px;width: 40px; padding: 0px; background-color: white; display: inline-block;">
   <img src="{% static 'img/insta9.png' %}" style="margin-left:20px;margin-top: 10px;width: 45px;">
-  <img src="{% static 'img/insta12.png' %}" style="margin-left:20px;margin-top: 10px;width: 35px;" >
+  <img src="{% static 'img/insta12.png' %}" style="margin-left:20px;margin-top: 10px;width: 35px;" href="{%url 'profile'%}">
   
 </div>
 </div>

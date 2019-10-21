@@ -14,10 +14,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.name
-
     @classmethod
-    def search_profile(cls, username):
-        return cls.objects.filter(name__icontains=username)
+    def search_by_name(cls,search_term):
+       news = cls.objects.filter(user__username__icontains = search_term)
+       return news
+
     def save_profile(self):
         self.user
 
@@ -34,7 +35,9 @@ class Image(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.image_name
-
+    
+    def addlikes(self):
+        self.likes.count()
 
     def save_image(self):
         self.save()

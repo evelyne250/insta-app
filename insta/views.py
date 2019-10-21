@@ -49,9 +49,9 @@ def profile(request, username=None):
 	'''
 	current_user = request.user
 	pi_images = Image.objects.filter(user=current_user)
-	if not username:
-         username = request.user.username
-         images = Image.objects.filter(image_name=username)
+	# if not username:
+    #      username = request.user.username
+    #      images = Image.objects.filter(image_name=username)
 	
 	return render(request,"profile.html",locals(),{"pi_images":pi_images})
 
@@ -71,22 +71,16 @@ def profile_edit(request):
 
 
 @login_required(login_url='/accounts/login/')
-def search_profile(request):
+def search_results(request):
+   if 'user' in request.GET and request.GET["user"]:
+       search_term = request.GET.get("user")
+       searched_user = Profile.search_by_name(search_term)
+       message = f"{search_term}"
+       return render(request, 'search.html',{"message":message,"searched_user": searched_user})
+   else:
+       message = "You haven't searched for any term"
+       return render(request, 'search.html',{"message":message})
 
-    if 'username' in request.GET and request.GET["username"]:
-        search_term = request.GET.get("username")
-
-        results = Profile.search_by_category(search_term)
-        print(results)
-        message = f"{search_term}"
-        
-        
-
-        return render(request, 'search.html',{"message":message,'results': search_term})
-
-    else:
-        message = "You haven't searched for any term"
-        return render(request, 'search.html',{"message":message})
 
 @login_required(login_url='/accounts/login/')     
 def add_comment(request,image_id):

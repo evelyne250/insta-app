@@ -44,8 +44,10 @@
                       
                       </ul>
             </div>
+
+
             <div class="init" style="margin-left: 3px;justify-content: space-around;;">
-              <p><strong>{{images.count}} Posts</strong></p>
+              <p><strong>{{images|length}} Posts</strong></p>
               <p><strong>{{user|length}} Followers</strong></p>
               <p><strong>{{user|length}} Following</strong></p>
             </div>
@@ -64,7 +66,7 @@
   <div class="row">
     {% for user in pi_images %}
     <div class="col-md-4" style="margin-right: 5%;">
-      <img src="{{user.image.url}}" height="300" class="img-responsive">
+      <img src="{{user.image.url}}" class="img-responsive">
     </div>
     {% endfor %}
   </div>

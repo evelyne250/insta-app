@@ -15,14 +15,7 @@ def welcome(request):
     comment = Comment.objects.all()
     for comment_image in images:
         comments = Comment.objects.filter(comment_image=comment_image)
-    # if request.method == 'POST':
-    #     form = ImageForm(request.POST)
-    #     if form.is_valid():
-    #         post = form.save(commit=False)
-    #         post.save()
-    #         return HttpResponseRedirect('news_today')
-    # else:
-    #     form = ImageForm()
+
     return render(request, 'welcome.html', {"date": date,"user": user,"images":images,"comments":comments})
 
 
@@ -49,10 +42,7 @@ def profile(request, username=None):
 	'''
 	current_user = request.user
 	pi_images = Image.objects.filter(user=current_user)
-	# if not username:
-    #      username = request.user.username
-    #      images = Image.objects.filter(image_name=username)
-	
+
 	return render(request,"profile.html",locals(),{"pi_images":pi_images})
 
 @login_required(login_url='/accounts/login/')
@@ -87,8 +77,7 @@ def add_comment(request,image_id):
     current_user=request.user
     if request.method=='POST':
         image_item=Image.objects.filter(id=image_id).first()
-    # prof=Profile.objects.filter(user=current_user.id).first()
-    # comments = Comment.objects.all()
+
     
         form=CommentForm(request.POST,request.FILES)
         if form.is_valid():
@@ -111,9 +100,3 @@ def likepost(request,image_id):
     images.likes=images.likes+1
     images.save()
     return redirect('welcome')
-#            images.likes.remove(request.user)
-#            is_liked=False
-#    else:
-#        images.likes.add(request.user)
-#        is_liked=True
-#    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -6,19 +6,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 {% block content %}
-    <div class="btn btn-default"><a href="{%url 'new-post'%}">Post something</a></div>
+    <div ><a class="btn btn-default" href="{%url 'new-post'%}">Post something</a></div>
 <div class="container" style="margin-top:7%;">
 
     <div class="jumbotron" style="background-color: transparent;">
       
         {% for item in images %}
         <span>
-                <img src="{{user.profile.profile_picture.url}}" alt="Profile" class="image_responsive" ><br>{{item.user}}
+                <img src="{{user.profile.profile_picture.url}}"  class="text-center" ><br>{{item.user}}
         </span>
         <div class="card">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-          <img src="{{item.image.url}}" class="img-responsive" alt="Image" >
-          <h2 class="text-center"> {{ item.image_name }} </h2>
+          <img src="{{item.image.url}}" class="card" alt="Image"  style="margin-left: 300px; height: 300px; width: 400px;">
+     
           
           <p><i class="fa fa-comment"></i></p> 
           <p  style="font-family: sans-serif;"> Caption : {{ item.caption}}</p>

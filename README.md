@@ -22,6 +22,10 @@ As a user of the application I should be able to:
 * CSS
 
 ## Link to heroku
+https://insta-app22.herokuapp.com/accounts/login/?next=/
+
+## contact
+email: uevelyne44@gmail.com
 
 ## License 
 
